@@ -1,3 +1,4 @@
 def square(num):
- return num**2
-square(2)
+    return num**2
+Manipulation=square(3)
+print(Manipulation)
