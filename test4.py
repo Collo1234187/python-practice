@@ -279,6 +279,251 @@ symmetric_difference = set1 ^ set2
 print(union)
 print(difference)
 print(symmetric_difference)
+print()
+
+#object oriented programming
+  #class and object
+class Dog:
+  def __init__(self, name, age):
+    self.name = name 
+    self.age = age
+  def bark(self):
+    return f"{self.name} says Woof!"
+# Creating an object 
+my_dog = Dog("Buddy", 3) 
+print(my_dog.name)  
+print(my_dog.bark())
+print() 
+
+ #encapsulation
+class BankAccount:
+  def __init__(self, balance): 
+    self.__balance = balance  # Private attribute
+  def deposit(self, amount):
+    if amount > 0: 
+      self.__balance += amount
+  def withdraw(self, amount):
+    if amount > 0 and amount <= self.__balance:
+      self.__balance -= amount
+    else: 
+      print("Insufficient funds")
+  def get_balance(self): 
+    return self.__balance
+account = BankAccount(1000) 
+account.deposit(5000)
+account.withdraw(4000)
+print(f"your account balance is {account.get_balance()}")
+print()
+
+ #inheritance
+class Animal:
+  def __init__(self, name):
+    self.name = name
+    def speak(self): 
+      pass
+class Dog(Animal):
+  def speak(self): 
+    return f"{self.name} says Woof!"
+class Cat(Animal):
+  def speak(self):
+    return f"{self.name} says Meow!"
+def animal_sound(Animal):
+  return Animal.speak()
+dog = Dog("Buddy") 
+cat = Cat("Whiskers")
+print(dog.speak()) 
+print(cat.speak()) 
+#polymorphism
+print(animal_sound(dog))  
+print(animal_sound(cat))
+print()
+
+#method overriding
+class Vehicle:
+  def __init__(self, name):
+    self.name = name
+  def start(self):  
+    return f"{self.name} is starting."
+class ElectricCar(Vehicle):
+  def start(self): 
+    return f"{self.name} is starting silently."
+car = Vehicle("Generic Car") 
+tesla = ElectricCar("Tesla Model 3")
+print(car.start()) 
+print(tesla.start()) 
+print()
+
+
+#multiple inheritance
+class Flyable: 
+  def fly(self): 
+    return "I can fly!"
+class Swimmable:
+  def swim(self): 
+    return "I can swim!"
+class Duck(Animal, Flyable, Swimmable): 
+  pass
+duck = Duck("Donald") 
+print(duck.fly())    
+print(duck.swim())
+print()   
+
+#Class and Static Methods
+class Person: 
+  count = 0
+  def __init__(self, name): 
+    self.name = name 
+    Person.count += 1
+  @classmethod
+  def get_count(cls):
+    return cls.count
+
+person1 = Person("Alice") 
+person2 = Person("Bob") 
+print(Person.get_count())  
+
+#Static Methods
+class MathOperations: 
+  @staticmethod 
+  def add(x, y):
+    return x + y 
+print(MathOperations.add(5, 3))  
+print()
+
+#Property Decorators
+class Temperature:
+  def __init__(self, celsius):
+    self._celsius = celsius
+  @property
+  def celsius(self):
+    return self._celsius
+  @celsius.setter 
+  def celsius(self, value):
+    if value <= -273.15:
+      raise ValueError("Temperature below absolute zero is not possible") 
+    self._celsius = value
+  @property
+  def fahrenheit(self):
+    return (self.celsius * 9/5) + 32
+temp = Temperature(-273.15) 
+print(temp.celsius)     
+print(temp.fahrenheit)  
+temp.celsius = 90
+print(temp.celsius)   
+print()
+
+#FILE HANDLING
+#open(filename, mode) 
+#file = open('example.txt', 'r') # Perform operations on the 
+#file.close()  # Always close the file when done
+#File Opening Modes
+#	'r': Read (default mode)
+	#'a': Append (adds to the end of the file)
+	#'x': Exclusive creation (fails if the file already exists)
+	#  '+': Read and write mode
+
+#reading from file
+file=open('Document.txt', 'r')  
+content = file.read() 
+print(content)
+file.close()
+print()
+
+#reading line by line
+file = open('Document.txt', 'r') 
+for line in file: 
+  print(line.strip())  # strip() removes leading/trailing whitespace
+file.close()
+print()
+
+
+#Reading Specific Number of Characters python
+file=open('Document.txt', 'r') 
+chunk = file.read(100)  # Read 100 characters 
+print(chunk)
+file.close()
+print()
+
+#writing in file
+#Writing Strings 
+file= open('Document.txt', 'w')  
+file.write("Hello, World!\n") 
+file.write("This is a new line.")
+
+#Writing Multiple Lines 
+#lines = ["Line 1\n", "Line 2\n", "Line 3\n"] 
+#file= open('output.txt', 'w')  
+#file.writelines(lines)
+
+#Appending to Files
+file=open('Document.txt', 'a') 
+file.write("New log entry\n")
+
+#Working with CSV Files
+#Reading CSV Files 
+#import csv
+#file=open('data.csv', 'r') 
+#csv_reader = csv.reader(file) 
+#for row in csv_reader: 
+#  print(row)
+
+#Writing CSV Files python import csv
+#data = [
+#['Name', 'Age', 'City'],
+#['Alice', '30', 'New York'],
+#['Bob', '25', 'Los Angeles']
+#]
+#file=open('output.csv', 'w', newline='')
+#csv_writer = csv.writer(file) 
+#csv_writer.writerows(data)
+
+#Working with JSON Files
+#Reading JSON Files python 
+#import json
+#file=open('data.json', 'r') 
+#data = json.load(file) 
+#print(data)
+
+#Writing JSON Files python 
+'''import json
+data = {
+"name": "Alice",
+"age": 30,
+"city": "New York"
+}
+file=open('output.json', 'w')
+json.dump(data, file, indent=4)'''
+
+#Working with Binary Files
+#Reading a binary file 
+'''file = open('image.jpg', 'rb') 
+content = file.read()
+# Writing to a binary file with 
+file=open('copy.jpg', 'wb')
+file.write(content)'''
+
+#File and Directory Operations
+'''import os
+# Get current working directory 
+print(os.getcwd())
+# List files and directories 
+print(os.listdir())
+# Create a new directory 
+os.mkdir('new_directory')
+# Rename a file 
+os.rename('old_name.txt', 'new_name.txt')
+# Delete a file 
+os.remove('file_to_delete.txt')
+# Check if a file exists 
+print(os.path.exists('example.txt'))'''
+
+
+
+
+
+
+
+
 
 
 
