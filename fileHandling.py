@@ -21,8 +21,24 @@ file.write("\n" "you look nice")
 file.close() 
 '''
 
-
+'''
 #automatically closes the file — even if errors happen.
 with open("example.txt", "w") as file:
     file.write("Hello odera")
-             
+'''
+
+'''
+file1 = open("example.txt, "r")
+
+file2 = open("abc.txt", "w")
+
+for data in file1:
+    file2.write(data)
+'''
+
+file1 = open("image.png","rb")
+
+file2 = open("image.png","wb")
+
+for data in file1:
+    file2.write(data)
